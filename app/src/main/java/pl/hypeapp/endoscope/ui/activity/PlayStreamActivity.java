@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.WindowManager;
 
 import net.grandcentrix.thirtyinch.TiActivity;
@@ -26,6 +28,9 @@ import pl.hypeapp.endoscope.view.PlayStreamView;
 
 public class PlayStreamActivity extends TiActivity<PlayStreamPresenter, PlayStreamView>
         implements PlayStreamView, SurfaceHolder.Callback, MediaPlayer.OnErrorListener, MediaPlayer.OnPreparedListener {
+
+    private static final String TAG = "PlayStreamActivity";
+
     public static final String INTENT_EXTRA_IP_CONNECT = "ip_connect";
     private MediaPlayer mediaPlayer;
     @BindView(R.id.surface_play) SurfaceView surfaceView;
@@ -136,5 +141,16 @@ public class PlayStreamActivity extends TiActivity<PlayStreamPresenter, PlayStre
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+    }
+
+    public void OnClick(View view) {
+        switch (view.getId()) {
+            case R.id.turn_left:
+                Log.d(TAG, "turn left here.");
+                break;
+            case R.id.turn_right:
+                Log.d(TAG, "turn right here.");
+                break;
+        }
     }
 }
