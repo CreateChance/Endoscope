@@ -38,7 +38,7 @@ public class PlayStreamPresenter extends TiPresenter<PlayStreamView> {
 
     public void onSurfaceCreated() {
         StringBuilder videoUrlBuilder = new StringBuilder();
-        videoUrlBuilder.append("rtsp://").append(ipAddress).append(":").append(port).append("/");
+        videoUrlBuilder.append("rtsp://").append(ipAddress).append(":").append(port).append("/").append("pi.264");
         Uri videoUri = Uri.parse(videoUrlBuilder.toString());
         getView().configureMediaPlayer(videoUri);
     }
