@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import pl.hypeapp.endoscope.R;
 import pl.hypeapp.endoscope.presenter.PlayStreamPresenter;
 import pl.hypeapp.endoscope.util.SettingsPreferencesUtil;
+import pl.hypeapp.endoscope.util.SteerEngineController;
 import pl.hypeapp.endoscope.view.PlayStreamView;
 
 public class PlayStreamActivity extends TiActivity<PlayStreamPresenter, PlayStreamView>
@@ -34,6 +35,8 @@ public class PlayStreamActivity extends TiActivity<PlayStreamPresenter, PlayStre
     public static final String INTENT_EXTRA_IP_CONNECT = "ip_connect";
     private MediaPlayer mediaPlayer;
     @BindView(R.id.surface_play) SurfaceView surfaceView;
+
+    private SteerEngineController mSteerEngineController;
 
     @NonNull
     @Override
@@ -49,6 +52,8 @@ public class PlayStreamActivity extends TiActivity<PlayStreamPresenter, PlayStre
         setContentView(R.layout.activity_play_stream);
         ButterKnife.bind(this);
         surfaceView.getHolder().addCallback(this);
+
+        mSteerEngineController = new SteerEngineController();
     }
 
     @Override
@@ -147,9 +152,11 @@ public class PlayStreamActivity extends TiActivity<PlayStreamPresenter, PlayStre
         switch (view.getId()) {
             case R.id.turn_left:
                 Log.d(TAG, "turn left here.");
+                mSteerEngineController.doTurnLeft();
                 break;
             case R.id.turn_right:
                 Log.d(TAG, "turn right here.");
+                mSteerEngineController.doTurnRight();
                 break;
         }
     }
